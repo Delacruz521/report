@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Responsive Sidebar Menu</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <style>
+
+    :root {
+    --primary: #29e9bc;
+    --normal: #ffffff;
+    --black: #13131a;
+    --bg: #0c1013;
+    --danger: #f75842;
+    --border: 0.1rem solid rgba(255, 255, 255, 0.3);
+
+
+    --container-width-lg: 80%;
+    --container-width-md: 90%;
+    --container-width-sm: 94%;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+
+    /* Sidebar menu */
+    .menu-bar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #333;
+      overflow-x: hidden;
+      transition: 0.3s;
+      padding-top: 60px;
+      z-index: 1000;
+    }
+
+    .menu-bar a {
+      padding: 15px 30px;
+      text-decoration: none;
+      font-size: 20px;
+      color: white;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .menu-bar a:hover {
+      background-color: #575757;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      font-size: 30px;
+      color: white;
+      text-decoration: none;
+    }
+
+    /* Open menu button */
+    .open-btn {
+      font-size: 25px;
+      cursor: pointer;
+      background-color: #333;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 999;
+      border-radius: 5px;
+    }
+
+    .open-btn:hover {
+      background-color: #444;
+    }
+
+    /* Page content */
+    .content {
+      transition: margin-left 0.3s;
+    }
+
+    section {
+      height: 100vh;
+    }
+
+    section:nth-child(odd) {
+      background-color: #f0f0f0;
+    }
+
+    section:nth-child(even) {
+      background-color: #e0e0e0;
+    }
+
+    h1 {
+      font-size: 40px;
+    }
+
+    p {
+      font-size: 18px;
+      max-width: 600px;
+      margin: 10px auto;
+    }
+
+    .home {
+      display: flex;
+      justify-content: center;
+      padding: 5rem;
+      align-items: center;
+
+    }
+
+    .home h1 {
+      text-align: center;
+      font-size: 3rem;
+      margin-bottom: 2rem;
+    }
+
+    .text h1 p {
+      bottom: 20rem;
+    }
+     
+    img {
+      transition: transform 0.5s ease;
+      border-radius: 20px;
+    }
+     
+    img:hover {
+      transform: scale(1.50);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 1);
+    }
+
+    /* home_culpa */
+    .home-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .text_form {
+      text-align: center;
+    }
+
+    .image_bg {
+      justify-content: center;
+      display: flex;
+      gap: 50px;
+    }
+
+    .image_bg img{
+      width: 500px;
+      height: 300px;
+      object-fit: cover;
+    }
+
+    .cta-btn {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin: 0 auto; /* This centers the button inside a block container */
+      display: block;
+    }
+
+    button a{
+      text-decoration: none;
+      color: white;
+    }
+
+    .cta-btn:hover {
+      background-color: #444;
+    }
+
+    .faqs {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.faqs_container {
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  background-color: white;
+}
+
+.faq {
+  padding: 2rem;
+  margin: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  height: fit-content;
+  background-color: var(--primary);
+  color: black;
+  text-align: justify;
+  cursor: pointer;
+  border-radius: 1rem;
+}
+
+.faq .border_bottom{
+  font-size: 20vh;
+  color: #fff;
+}
+
+.faq h1 {
+  font-size: 25px;
+  line-height: 2.23;
+}
+
+.faq_icon {
+  align-self: flex-start;
+  font-size: 1.3rem;
+}
+
+
+.faq h2 {
+  font-size: 20px;
+  margin-top: 0.8rem;
+  display: none;
+}
+
+.faq.open h2 {
+  display: block;
+}
+
+.about .row{
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.about .row .image{
+  flex:1 1 40rem;
+}
+
+.about .row .image img{
+  width: 100%;
+}
+
+.about .row .content{
+  text-align: center;
+  flex:1 1 40rem;
+}
+
+.about .row .content h3{
+  font-size: 3rem;
+  color:var(#ffffff);
+}
+
+.about .row .content p{
+  padding:1rem 0;
+  line-height: 2;
+  font-size: 1.6rem;
+  color:var(#ffffff);
+}
+
+
+  </style>
+</head>
+<body>
+
+  <!-- Menu Bar -->
+  <div id="menu-bar" class="menu-bar">
+    <a href="javascript:void(0)" class="close-btn" onclick="closeMenu()">×</a>
+    <a href="main.html">Home</a>
+    <a href="#home">Introduction</a>
+    <a href="#overview">Overview</a>
+    <a href="#question">Question</a>
+    <a href="#faqs">Footer</a>
+  </div>
+
+  <!-- Button to Open Menu -->
+  <button class="open-btn" onclick="openMenu()">☰ Menu</button>
+
+  <!-- Page Content -->
+  <div class="content">
+    <section id="home" class="home">
+      <div class="home-wrapper">
+        <div class="image_bg">
+          <img src="image/devera.jpg" alt="">  
+        </div>
+        <div class="text_form">
+          <h1>Jason Hickel</h1>
+          <h2>Jason Hickel is an economic anthropologist and 
+            author known for his work on global inequality and 
+            sustainability. A professor at the Autonomous University of Barcelona, he promotes the idea of de-development—urging wealthy nations to rethink progress by reducing 
+            overconsumption and supporting global fairness.</h2>
+        </div>
+      </div>
+    </section>
+
+    <section id="overview" class="home">
+        <div class="home-wrapper">
+            <div class="text_form">
+              <h1>Overview</h1>
+              <h2>This report explores Jason Hickel’s concept of de-development, which challenges the traditional idea that constant economic growth leads to true progress. Instead of promoting more production and consumption—especially in already wealthy countries—Hickel argues that scaling down growth in rich nations can help reduce global inequality and protect the environment.</h2>
+            </div>
+          </div>
+    </section>
+
+    <section id="question" class="home">
+        <div class="text_form">
+            <h1>Question</h1>
+            <h2>How do you think the development strategies of wealthy nations affect poorer countries?</h2>
+    </section>
+
+    <section class="faqs" id="faqs">
+        <div class="container faqs_container">
+            <article class="faq">
+                <div class="faq_icon">
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="question_ans">
+                    <h1> The Problem
+                    </h1>
+                    <h2>Despite decades of development efforts, the gap between rich and poor countries is widening. A 2015 BBC report shows that even with massive investments and aid, inequality persists. Meanwhile, overconsumption in wealthier nations is harming the planet and putting society at risk. Studies reveal that 70% of people in these countries believe overconsumption is a serious issue.</h2>
+                </div>
+            </article>
+
+            <article class="faq">
+                <div class="faq_icon">
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="question_ans">
+                    <h1> Why It Matters
+                    </h1>
+                    <h2>Human flourishing should mean more than economic success. It includes well-being, equality, and environmental sustainability. Hickel’s framework asks us to rethink progress—not as endless growth, but as creating systems that truly benefit people and the planet.</h2>
+                </div>
+            </article>
+
+            <article class="faq">
+                <div class="faq_icon">
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="question_ans">
+                    <h1> Conclusion
+                    </h1>
+                    <h2>Hickel’s idea of de-development offers a bold but necessary alternative to traditional development. By reducing excessive growth in high-income countries, the world can move toward a fairer, more sustainable future—where all nations have the chance to flourish.</h2>
+                </div>
+            </article>
+        </div>
+    </section>
+    <!-- FAQs Section End Here -->
+
+    
+
+  <script>
+    function openMenu() {
+      document.getElementById("menu-bar").style.width = "250px";
+    }
+
+    function closeMenu() {
+      document.getElementById("menu-bar").style.width = "0";
+    }
+
+    // Show/Hide FAQs answer
+    const faqs = document.querySelectorAll('.faq');
+    faqs.forEach(faq => {
+        faq.addEventListener('click', () => {
+            faq.classList.toggle('open');
+
+            //change icon
+            const icon = faq.querySelector('.faq_icon i');
+            if (icon.className === 'fas fa-plus'){
+                icon.className = 'fas fa-minus';
+            }
+            else{
+                icon.className = 'fas fa-plus';
+            }
+
+        })
+    })
+    
+    
+  </script>
+
+  
+
+</body>
+</html>

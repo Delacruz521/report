@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Responsive Sidebar Menu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+
+    /* Sidebar menu */
+    .menu-bar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #333;
+      overflow-x: hidden;
+      transition: 0.3s;
+      padding-top: 60px;
+      z-index: 1000;
+    }
+
+    .menu-bar a {
+      padding: 15px 30px;
+      text-decoration: none;
+      font-size: 20px;
+      color: white;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .menu-bar a:hover {
+      background-color: #575757;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      font-size: 30px;
+      color: white;
+      text-decoration: none;
+    }
+
+    .open-btn {
+      font-size: 25px;
+      cursor: pointer;
+      background-color: #333;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 999;
+      border-radius: 5px;
+    }
+
+    .open-btn:hover {
+      background-color: #444;
+    }
+
+    .content {
+      transition: margin-left 0.3s;
+    }
+
+    section {
+      padding: 5rem 1rem;
+      min-height: 100vh;
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .home-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    .image_bg {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .image_bg img {
+      width: 100%;
+      max-width: 300px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 15px;
+      transition: transform 0.5s ease;
+    }
+
+    .image_bg img:hover {
+      transform: scale(1.50);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .text_form {
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+    .text_form p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: #333;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .cta-btn {
+      background-color: #333;
+      color: #fff;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 2rem;
+    }
+
+    .cta-btn a {
+      text-decoration: none;
+      color: white;
+    }
+
+    .cta-btn:hover {
+      background-color: #444;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .image_bg img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      .text_form p {
+        font-size: 1rem;
+      }
+
+      .open-btn {
+        font-size: 20px;
+        padding: 8px 16px;
+      }
+
+      .cta-btn {
+        width: 80%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .text_form p {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <!-- Page Content -->
+  <div class="content">
+    <section id="home">
+      <div class="home-wrapper">
+        <div class="image_bg">
+          <img src="image/culpa.jpg" alt="Image 1">
+          <img src="image/culpa1.jpg" alt="Image 2">
+          <img src="image/culpa2.jpg" alt="Image 3">
+        </div>
+        <div class="text_form">
+          <h1>
+            What does this mean for our theory of development? Economist Peter Edward argues that instead of pushing poorer countries to "catch up" with rich ones, we should be thinking of ways to get rich countries to "catch down" to more appropriate levels of development. 
+            We should look at societies where people live long and happy lives at relatively low levels of income and consumption — not as basket cases that need to be developed toward Western models, but as exemplars of efficient living.
+          </h1>
+        </div>
+        <button class="cta-btn"><a href="main.html">Back</a></button>
+      </div>
+    </section>
+  </div>
+
+  <!-- Script -->
+  <script>
+    function openMenu() {
+      document.getElementById("menu-bar").style.width = "250px";
+    }
+
+    function closeMenu() {
+      document.getElementById("menu-bar").style.width = "0";
+    }
+  </script>
+</body>
+</html>
